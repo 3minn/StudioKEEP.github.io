@@ -47,15 +47,21 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  if(!Array.isArray(rawSettings.recruitment)||rawSettings.recruitment.length>30)throw Error('지원 부서 목록 오류');
  settings.recruitment=rawSettings.recruitment.map((v,i)=>{if(!v||typeof v!=='object')throw Error('지원 부서 오류 '+i);const name=v.name,description=v.description||'',url=v.url||'',open=v.open!==false;if(typeof name!=='string'||!name.trim()||name.length>120||typeof description!=='string'||description.length>3000||typeof url!=='string')throw Error('지원 부서 항목 오류 '+i);if(url){const u=new URL(url);if(u.protocol!=='https:'||u.hostname!=='docs.google.com'||!/^\/forms\/d\/e\/[A-Za-z0-9_-]+\/viewform\/?$/.test(u.pathname))throw Error('Google Forms 주소 오류 '+i);}return {name,description,url,open};});
  const memberIDs=new Set(data.members.map(m=>m.id)),projectIDs=new Set(data.projects.map(p=>p.id));
- // Resolve explicit member names in production credits to stable member IDs.
- // Keep CMS-selected IDs and only inspect credit/staff lines, not narrative text.
- const creditLine=/credit|크레딧|제작진|참여|staff|cast|출연|연출|편집|촬영|3d|기획|감독|음악|제작|director|editor|model|actor|sound|animation|design|운영|홍보|担当|制作|出演/i;
- const escapedRE=s=>s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+ // Extract named staff only from explicit production-credit fields.
+ const creditLine=/^\s*(?:production|producer|edit(?:or|ing)?|art|filming|act(?:or|ing)?|voice|cast|staff|credit(?:s)?|special thanks|제작(?:진)?|크레딧|출연|연출|편집|촬영|기획|감독|성우|디자인|모델링|운영|홍보|出演|制作|編集|撮影|声優)\s*[:：,\[]/i;
+ const aliases={'atcat':'at_cat','life4':'life4_','3imnnute':'3minnute'};
+ const normalizedName=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\uFE0E\uFE0F\u200B-\u200D]/g,'').replace(/[^\p{L}\p{N}]/gu,'');
+ const nameMap=new Map();
+ for(const m of data.members)for(const name of [m.name,m.name_en,m.name_ja])if(name&&normalizedName(name).length>=3)nameMap.set(normalizedName(name),m.id);
  for(const p of data.projects){
    const lines=[p.desc,p.desc_en,p.desc_ja].flatMap(v=>(v||'').split(/\r?\n/)).filter(v=>creditLine.test(v));
-   for(const m of data.members){
-     const names=[m.name,m.name_en,m.name_ja].filter(v=>typeof v==='string'&&v.trim().length>=3);
-     if(names.some(name=>lines.some(line=>new RegExp('(^|[^\\p{L}\\p{N}_])'+escapedRE(name)+'(?=$|[^\\p{L}\\p{N}_])','iu').test(line))))p.credits.push(m.id);
+   for(const line of lines){
+     const value=line.replace(/^\s*[^:：\]]+[:：,\]]\s*/,'').replace(/[\[\]]/g,'');
+     for(const token of value.split(/[,，、]/)){
+       const key=normalizedName(token.trim().replace(/^[\uFE0E\uFE0F\s]+/u,''));
+       const id=nameMap.get(aliases[key]||key);
+       if(id)p.credits.push(id);
+     }
    }
    p.credits=[...new Set(p.credits)];
  }

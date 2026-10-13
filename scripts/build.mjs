@@ -50,7 +50,7 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  // Resolve explicit member names in production credits to stable member IDs.
  // Keep CMS-selected IDs and only inspect credit/staff lines, not narrative text.
  const creditLine=/credit|크레딧|제작진|참여|staff|cast|출연|연출|편집|촬영|3d|기획|감독|음악|제작|director|editor|model|actor|sound|animation|design|운영|홍보|担当|制作|出演/i;
- const escapedRE=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\const escapedRE=s=>s.replace(/[^\p{L}\p{N}]/gu,c=>'\\'+c);');
+ const escapedRE=s=>s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  for(const p of data.projects){
    const lines=[p.desc,p.desc_en,p.desc_ja].flatMap(v=>(v||'').split(/\r?\n/)).filter(v=>creditLine.test(v));
    for(const m of data.members){

@@ -5,6 +5,8 @@
   "desc": "연기부",
   "published": true,
   "order": 9,
-  "featured_projects": [],
-  "image": ""
+  "featured_projects": [
+    "yt-38kQRxAB080"
+  ],
+  "image": "uploads/liyu.png"
 }

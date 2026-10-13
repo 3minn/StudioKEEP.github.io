@@ -44,11 +44,11 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  settings.reels=rawSettings.reels.map((v,i)=>{if(!v||typeof v!=='object'||typeof v.label!=='string'||v.label.length>120||typeof v.src!=='string'||typeof (v.poster??'')!=='string')throw Error('영상 항목 오류 '+i);return {label:v.label,src:httpsLink(v.src,'reel'),poster:httpsLink(v.poster||'','poster')};});
  if(!Array.isArray(rawSettings.text_overrides)||rawSettings.text_overrides.length>300)throw Error('문구 변경은 최대 300개입니다');
  settings.text_overrides=rawSettings.text_overrides.map(v=>{if(!v||typeof v.original!=='string'||!v.original.trim()||v.original.length>500)throw Error('원래 문구 오류');const o={original:v.original};for(const k of ['ko','en','ja']){if(typeof (v[k]??'')!=='string'||(v[k]||'').length>3000)throw Error('문구 오류');o[k]=v[k]||'';}return o;});
- data.settings=settings;
  const memberIDs=new Set(data.members.map(m=>m.id)),projectIDs=new Set(data.projects.map(p=>p.id));
  for(const p of data.projects){for(const id of p.credits)if(!memberIDs.has(id))warnings.push(`${p.id}: 비공개/삭제된 멤버 참조 제외`);p.credits=p.credits.filter(id=>memberIDs.has(id));}
  for(const m of data.members){const participation=data.projects.filter(p=>p.credits.includes(m.id)).map(p=>p.id);m.works=[...new Set([...m.featured_projects.filter(id=>projectIDs.has(id)&&participation.includes(id)),...participation])];delete m.featured_projects;}
  for(const type of Object.keys(data))data[type].sort((a,b)=>type==='announcements'?b.date.localeCompare(a.date)||a.order-b.order||a.id.localeCompare(b.id):a.order-b.order||a.id.localeCompare(b.id));
+ data.settings=settings;
  // Validate every public image before touching last known good output.
  const assets=[];const uploadRoot=await realpath(path.join(root,'content','uploads'));
  for(const row of Object.values(data).flat())if(row.image){const src=await realpath(path.join(root,'content',row.image));if(!src.startsWith(uploadRoot+path.sep)||(await stat(src)).isDirectory())throw Error('업로드 경로 이탈');const bytes=await readFile(src);if(bytes.length>10485760)throw Error('이미지는 10MB 이하여야 합니다');const ext=path.extname(src).toLowerCase();const valid=ext==='.png'?bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])):['.jpg','.jpeg'].includes(ext)?bytes[0]===255&&bytes[1]===216:ext==='.gif'?['GIF87a','GIF89a'].includes(bytes.toString('ascii',0,6)):bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP';if(!valid)throw Error('이미지 형식 불일치: '+row.image);assets.push({src,dest:row.image});}

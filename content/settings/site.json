@@ -31,5 +31,37 @@
   "join_url": "",
   "footer_note": "Studio KEEP · NONPROFIT CREATIVE STUDIO\n잘 하지 못해도, 할 줄 몰라도 OK",
   "footer_tagline": "WE KEEP CREATING.",
-  "text_overrides": []
+  "text_overrides": [],
+  "recruitment": [
+    {
+      "name": "3D부",
+      "description": "3D 모델링과 가상 공간, 소품 제작에 관심 있는 분들을 기다립니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSci4OXyz3J9vhCIFy-ZYU0z4rmAeshhzxVi2UdXrx3VgbYbQA/viewform",
+      "open": true
+    },
+    {
+      "name": "매니지먼트 본부 (인사·운영)",
+      "description": "멤버 간 소통과 스튜디오 운영을 함께 이끌어갈 분들을 기다립니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
+      "open": true
+    },
+    {
+      "name": "연기부",
+      "description": "캐릭터와 이야기를 연기로 표현하는 활동에 관심 있는 분들을 기다립니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSe28z1JzHm3uFDITheWXTSRJdk3Kso9BI8MfgjN76WkHYZmtA/viewform",
+      "open": true
+    },
+    {
+      "name": "연출부",
+      "description": "영상과 프로젝트의 기획, 스토리 구성 및 연출에 관심 있는 분들을 기다립니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSc6axoKxfjUrF-UofWfdyicqzJJdW0-40pyE6FDnAA-Icz_-A/viewform",
+      "open": true
+    },
+    {
+      "name": "편집부",
+      "description": "영상 편집과 후반 제작을 함께할 분들을 기다립니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfyCNbyuw_j25hmarfbHwlEgT2z8ZE0hDGJFPdiVcktAGkKlw/viewform",
+      "open": true
+    }
+  ]
 }

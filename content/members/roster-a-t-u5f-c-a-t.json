@@ -2,9 +2,11 @@
   "id": "roster-a-t-u5f-c-a-t",
   "name": "AT_Cat",
   "role": "편집",
-  "desc": "부서장 · 편집부",
+  "desc": "부장 · 편집부",
   "published": true,
   "order": 12,
   "featured_projects": [],
-  "image": ""
+  "image": "",
+  "desc_en": "Head of Department · Editing",
+  "desc_ja": "部長 · 編集部"
 }

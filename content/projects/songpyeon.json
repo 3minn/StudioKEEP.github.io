@@ -1,0 +1,20 @@
+{
+  "id": "songpyeon",
+  "title": "키펠과 함께 만드는 송편",
+  "category": "WORLD & GAME",
+  "status": "제작 기록",
+  "art": "moon",
+  "desc": "반죽부터 재료 선택, 모양 만들기, 찌기와 평가까지. VRChat에서 함께 즐기는 송편 만들기 미니게임입니다. 최종 공개 링크와 실제 제작 크레딧은 확인 후 등록합니다.",
+  "credits": [
+    "sample-3d"
+  ],
+  "published": true,
+  "order": 1,
+  "group": "WORLD / GAME",
+  "title_en": "Making songpyeon with Kipfel",
+  "title_ja": "キプフェルとソンピョン作り",
+  "desc_en": "A VRChat songpyeon-making minigame, from dough and fillings to shaping, steaming, and evaluation. Links and credits will be added after verification.",
+  "desc_ja": "生地、具材選び、成形、蒸し、評価まで。VRChatで楽しむソンピョン作りミニゲームです。公開リンクとクレジットは確認後に掲載します。",
+  "status_en": "Production record",
+  "status_ja": "制作記録"
+}

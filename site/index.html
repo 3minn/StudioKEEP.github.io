@@ -24,10 +24,10 @@ const REELS=YOUTUBE_REELS.length?YOUTUBE_REELS:(SETTINGS.reels||[{label:'FEATURE
 const LINKS={contactDrive:SETTINGS.contact_url||'',joinForm:SETTINGS.join_url||''};
 const siteText=(key,fallback)=>esc(SETTINGS[key]||fallback);
 function applySiteCopy(){
- document.title=SETTINGS.site_title||document.title;
- const meta=document.querySelector('meta[name="description"]');if(meta&&SETTINGS.site_description)meta.content=SETTINGS.site_description;
+ document.title=lang==='ko'?(SETTINGS.site_title||document.title):'Studio KEEP — '+(lang==='en'?'Creating Together':'一緒につくる物語');
+ const meta=document.querySelector('meta[name="description"]');if(meta&&SETTINGS.site_description)meta.content=lang==='ko'?SETTINGS.site_description:lang==='en'?'Studio KEEP is a nonprofit creative studio making films and stories in VRChat, inspired by Kipfel.':'Studio KEEPは、キプフェルを中心にVRChatで映像や物語を制作する非営利クリエイティブスタジオです。';
  const foot=document.querySelector('.footer');
- if(foot&&typeof foot.querySelectorAll==='function'){const smalls=foot.querySelectorAll('small');if(smalls[0]&&SETTINGS.footer_note)smalls[0].textContent=SETTINGS.footer_note;if(smalls[1]&&SETTINGS.footer_tagline)smalls[1].textContent=SETTINGS.footer_tagline;}
+ if(foot&&typeof foot.querySelectorAll==='function'){const smalls=foot.querySelectorAll('small');if(smalls[0]&&SETTINGS.footer_note)smalls[0].textContent=lang==='ko'?SETTINGS.footer_note:lang==='en'?'Studio KEEP · NONPROFIT CREATIVE STUDIO\nNo skills yet? No experience? That’s OK':'Studio KEEP · 非営利クリエイティブスタジオ\n上手じゃなくても、やり方がわからなくてもOK';if(smalls[1]&&SETTINGS.footer_tagline)smalls[1].textContent=SETTINGS.footer_tagline;}
  const overrides=SETTINGS.text_overrides||[];
  for(const root of [document.getElementById('main'),foot]){
    if(!root||typeof document.createTreeWalker!=='function')continue;const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;

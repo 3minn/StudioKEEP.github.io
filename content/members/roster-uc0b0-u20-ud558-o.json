@@ -2,9 +2,11 @@
   "id": "roster-uc0b0-u20-ud558-o",
   "name": "산 하o",
   "role": "인사",
-  "desc": "부서장 · 인사과",
+  "desc": "부장 · 인사과",
   "published": true,
   "order": 31,
   "featured_projects": [],
-  "image": ""
+  "image": "",
+  "desc_en": "Head of Department · Human Resources",
+  "desc_ja": "部長 · 人事課"
 }

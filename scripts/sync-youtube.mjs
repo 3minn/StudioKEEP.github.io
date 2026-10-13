@@ -12,11 +12,16 @@ do{const p=await api('playlistItems',{part:'contentDetails',playlistId:playlist,
 const videos=[];
 for(let i=0;i<ids.length;i+=50){const p=await api('videos',{part:'snippet,status,contentDetails',id:ids.slice(i,i+50).join(',')});videos.push(...(p.items||[]).filter(x=>x.status?.privacyStatus==='public'&&x.snippet?.title))}
 const members=await Promise.all((await readdir(path.join(root,'content/members'))).filter(x=>x.endsWith('.json')).map(async x=>JSON.parse(await readFile(path.join(root,'content/members',x),'utf8'))));
-const names=members.filter(m=>m.published).map(m=>({id:m.id,name:m.name.toLowerCase().trim()})).filter(m=>m.name.length>=3);
+const normalizedName=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\uFE0E\uFE0F\u200B-\u200D]/g,'').replace(/[^\p{L}\p{N}]/gu,'');
+const nameMap=new Map();
+for(const m of members.filter(m=>m.published))for(const name of [m.name,m.name_en,m.name_ja])if(name&&normalizedName(name).length>=3)nameMap.set(normalizedName(name),m.id);
+const aliases={'3imnnute':'3minnute'};
+const creditLine=/^\s*(?:production|producer|edit(?:or|ing)?|art|filming|act(?:or|ing)?|voice|cast|staff|credit(?:s)?|special thanks|제작(?:진)?|크레딧|출연|연출|편집|촬영|기획|감독|성우|디자인|모델링|운영|홍보|出演|制作|編集|撮影|声優)\s*[:：,\[]/i;
 let created=0,updated=0,unmatched=new Set();
 for(const video of videos){const id='yt-'+video.id,file=path.join(dir,id+'.json'),snippet=video.snippet,description=snippet.description||'';let existing=null;try{existing=JSON.parse(await readFile(file,'utf8'))}catch(e){if(e.code!=='ENOENT')throw e}
-const lines=description.split(/\r?\n/);const creditLines=lines.filter(line=>/credit|크레딧|제작진|staff|cast|출연|연출|편집|촬영|3d|기획|감독|음악|제작|director|editor|model|actor|sound|animation|design|운영|홍보/i.test(line));
-const credits=names.filter(m=>creditLines.some(line=>{const low=line.toLowerCase();const at=low.indexOf(m.name);return at>=0&&!/[a-z0-9_]/i.test(low[at-1]||'')&&!/[a-z0-9_]/i.test(low[at+m.name.length]||'')})).map(m=>m.id);
+const creditLines=description.split(/\r?\n/).filter(line=>creditLine.test(line));
+const credits=[];
+for(const line of creditLines){const value=line.replace(/^\s*[^:：\]]+[:：,\]]\s*/,'').replace(/[\[\]]/g,'');for(const token of value.split(/[,，、]/)){const key=normalizedName(token.trim());const id=nameMap.get(aliases[key]||key);if(id)credits.push(id)}}
 if(creditLines.length&&!credits.length)unmatched.add(video.id);
 const row=existing?{...existing}:{id,published:true,order:10000,group:'FILM',art:'film',category:'YOUTUBE',status:'YouTube 공개 영상',credits:[]};
 row.youtube_id=video.id;row.youtube_synced=true;row.youtube_thumbnail=snippet.thumbnails?.maxres?.url||snippet.thumbnails?.standard?.url||snippet.thumbnails?.high?.url||snippet.thumbnails?.medium?.url||'';

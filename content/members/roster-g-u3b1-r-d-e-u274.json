@@ -2,9 +2,11 @@
   "id": "roster-g-u3b1-r-d-e-u274",
   "name": "Gαrdeɴ",
   "role": "회계",
-  "desc": "부서장 · 회계과",
+  "desc": "대표",
   "published": true,
-  "order": 32,
+  "order": 0,
   "featured_projects": [],
-  "image": ""
+  "image": "",
+  "desc_en": "Representative",
+  "desc_ja": "代表"
 }

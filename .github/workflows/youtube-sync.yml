@@ -1,0 +1,35 @@
+name: YouTube WORKS 자동 동기화
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: youtube-works-sync
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: YouTube 공개 영상 및 크레딧 동기화
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/sync-youtube.mjs
+      - name: 변경 내용 저장
+        run: |
+          if [ -n "$(git status --porcelain -- content/projects)" ]; then
+            git config user.name "studio-keep-sync[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add content/projects
+            git commit -m "Sync public YouTube videos into WORKS"
+            git push
+          else
+            echo "변경된 영상 없음"
+          fi

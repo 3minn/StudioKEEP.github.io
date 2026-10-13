@@ -46,6 +46,13 @@ header nav a[aria-current="page"]:hover::after,header nav a[aria-current="page"]
 .keep-contact-form button:disabled{opacity:.5;cursor:wait}
 .keep-contact-form .form-status{font-size:13px;min-height:1.4em;line-height:1.6}
 .keep-contact-form .contact-honeypot{position:absolute!important;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+/* Ink-wash navigation: diffuse outgoing page, then resolve the next page into focus. */
+#main{transition:none;will-change:auto}
+#main.ink-out{animation:ink-wash-out .38s cubic-bezier(.45,0,.75,1) both;pointer-events:none}
+#main.ink-in{animation:ink-wash-in .68s cubic-bezier(.16,1,.3,1) both}
+@keyframes ink-wash-out{0%{filter:blur(0);opacity:1;transform:scale(1)}55%{filter:blur(9px);opacity:.72;transform:scale(1.006)}100%{filter:blur(24px);opacity:0;transform:scale(1.015)}}
+@keyframes ink-wash-in{0%{filter:blur(24px);opacity:0;transform:scale(1.015)}35%{filter:blur(13px);opacity:.45}72%{filter:blur(4px);opacity:.88}100%{filter:blur(0);opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#main.ink-out,#main.ink-in{animation:none!important;filter:none!important;opacity:1!important;transform:none!important}}
 /* Keep a thumbnail visible until the corresponding player has finished loading. */
 .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55);pointer-events:none;transition:opacity .45s ease}
 .hero-poster[hidden]{display:none}.hero-poster.is-ready{opacity:0}
@@ -130,7 +137,25 @@ else if(page==='contact'){
 else{location.hash='home';return}bind();applyLanguage();applySiteCopy();setupReveal();}
 function workFilters(){return `<div class="work-filters"><span>CATEGORY</span><div>${['ALL','FILM','WORLD / GAME','EXPERIENCE','3D / DESIGN'].map(c=>`<button data-category="${c}" aria-pressed="${workFilter===c}">${c}<sup>${c==='ALL'?works.length:works.filter(w=>w.group===c).length}</sup></button>`).join('')}</div></div>`}
 function bind(){main.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{workFilter=b.dataset.category;main.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('filtered-works').innerHTML=cards()+(!works.some(w=>workFilter==='ALL'||w.group===workFilter)?'<p class="note">'+({ko:'등록된 작품이 없습니다.',en:'No projects listed yet.',ja:'掲載作品はまだありません。'}[lang])+'</p>':'');bind();setupReveal();applyLanguage()});main.querySelectorAll('[data-reel]').forEach(b=>b.onclick=()=>selectReel(Number(b.dataset.reel)));main.querySelectorAll('[data-work]').forEach(b=>b.onclick=()=>location.hash='work/'+b.dataset.work);main.querySelectorAll('[data-member]').forEach(b=>b.onclick=()=>location.hash='member/'+b.dataset.member);main.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{roleFilter=b.dataset.role;main.querySelectorAll('[data-role]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});document.getElementById('member-list').innerHTML=memberCards(roleFilter);bind();applyLanguage()})}
-let transitionTimer;addEventListener('hashchange',()=>{clearTimeout(transitionTimer);const sweep=document.querySelector('.sweep');sweep.classList.remove('run');void sweep.offsetWidth;sweep.classList.add('run');transitionTimer=setTimeout(()=>{scrollTo({top:0,behavior:'instant'});render();main.setAttribute('tabindex','-1');main.focus({preventScroll:true})},reduced.matches?0:650)});
+let transitionTimer,inkFinishTimer;
+addEventListener('hashchange',()=>{
+ clearTimeout(transitionTimer);clearTimeout(inkFinishTimer);
+ main.classList.remove('ink-in','ink-out');
+ if(reduced.matches){
+  scrollTo({top:0,behavior:'instant'});render();main.setAttribute('tabindex','-1');main.focus({preventScroll:true});return;
+ }
+ void main.offsetWidth;
+ main.classList.add('ink-out');
+ transitionTimer=setTimeout(()=>{
+  scrollTo({top:0,behavior:'instant'});
+  render();
+  main.classList.remove('ink-out');
+  void main.offsetWidth;
+  main.classList.add('ink-in');
+  main.setAttribute('tabindex','-1');main.focus({preventScroll:true});
+  inkFinishTimer=setTimeout(()=>main.classList.remove('ink-in'),700);
+ },370);
+});
 function updateScroll(){if(!homeActive)return;const t=Math.max(0,Math.min(1,scrollY/(innerHeight*1.25)));const wash=Math.max(0,Math.min(1,(t-.15)/.7)),reveal=Math.max(0,Math.min(1,(t-.35)/.6));document.querySelector('.whitewash').style.opacity=wash;const m=document.querySelector('.manifesto');m.style.opacity=reveal;m.style.filter=`blur(${(1-reveal)*20}px)`;m.style.transform=`translateY(${(1-reveal)*35}px)`;document.querySelector('.hero-type').style.opacity=1-wash;document.querySelector('.scroll').style.opacity=1-wash;document.querySelector('.hero-kicker').style.opacity=1-wash;document.querySelector('.hero-caption').style.opacity=1-wash;}
 addEventListener('scroll',updateScroll,{passive:true});addEventListener('resize',updateScroll);
 function initPixels(){cancelAnimationFrame(raf);const c=document.getElementById('pixels');if(!c)return;const ctx=c.getContext('2d');if(!ctx)return;c.width=640;c.height=400;let frame=0;function draw(){if(!homeActive)return;frame++;const t=frame*.007;ctx.setTransform(2,0,0,2,0,0);ctx.fillStyle=['#030305','#050307','#020608','#060503'][reelIndex];ctx.fillRect(0,0,320,200);const cx=160+Math.sin(reelIndex)*25,cy=97;for(let i=0;i<95;i++){let x=(Math.sin(i*127.1)*43758.54)%1;x=Math.abs(x);let y=Math.abs((Math.sin(i*311.7)*19458.2)%1);ctx.fillStyle=`rgba(200,210,220,${.16+.14*Math.sin(t+i)})`;ctx.fillRect(Math.floor(x*320/2)*2,Math.floor(y*130/2)*2,1,1)}for(let z=24;z>=1;z--){const depth=(z+t*2)%24+1,s=95/depth;ctx.strokeStyle=`rgba(160,170,185,${.06+.26*(1-depth/25)})`;ctx.lineWidth=1;let rw=s*15,rh=s*9;ctx.strokeRect(Math.round(cx-rw/2),Math.round(cy-rh/2),Math.round(rw),Math.round(rh));}for(let i=0;i<35;i++){let x=(i*67)%320,y=110+(i*37)%90,h=8+(i*13)%45;ctx.fillStyle=i%4===0?'#33353c':'#171a20';ctx.fillRect(x,y-h,5+i%9,h);ctx.fillStyle='#7a7c87';if(i%3===0)ctx.fillRect(x+2,y-h+3,2,2)}if(!paused&&!reduced.matches&&!document.hidden&&scrollY<innerHeight*1.5)raf=requestAnimationFrame(draw)}draw()}

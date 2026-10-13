@@ -78,6 +78,8 @@ function updateScroll(){if(!homeActive)return;const t=Math.max(0,Math.min(1,scro
 addEventListener('scroll',updateScroll,{passive:true});addEventListener('resize',updateScroll);
 function initPixels(){cancelAnimationFrame(raf);const c=document.getElementById('pixels');if(!c)return;const ctx=c.getContext('2d');if(!ctx)return;c.width=640;c.height=400;let frame=0;function draw(){if(!homeActive)return;frame++;const t=frame*.007;ctx.setTransform(2,0,0,2,0,0);ctx.fillStyle=['#030305','#050307','#020608','#060503'][reelIndex];ctx.fillRect(0,0,320,200);const cx=160+Math.sin(reelIndex)*25,cy=97;for(let i=0;i<95;i++){let x=(Math.sin(i*127.1)*43758.54)%1;x=Math.abs(x);let y=Math.abs((Math.sin(i*311.7)*19458.2)%1);ctx.fillStyle=`rgba(200,210,220,${.16+.14*Math.sin(t+i)})`;ctx.fillRect(Math.floor(x*320/2)*2,Math.floor(y*130/2)*2,1,1)}for(let z=24;z>=1;z--){const depth=(z+t*2)%24+1,s=95/depth;ctx.strokeStyle=`rgba(160,170,185,${.06+.26*(1-depth/25)})`;ctx.lineWidth=1;let rw=s*15,rh=s*9;ctx.strokeRect(Math.round(cx-rw/2),Math.round(cy-rh/2),Math.round(rw),Math.round(rh));}for(let i=0;i<35;i++){let x=(i*67)%320,y=110+(i*37)%90,h=8+(i*13)%45;ctx.fillStyle=i%4===0?'#33353c':'#171a20';ctx.fillRect(x,y-h,5+i%9,h);ctx.fillStyle='#7a7c87';if(i%3===0)ctx.fillRect(x+2,y-h+3,2,2)}if(!paused&&!reduced.matches&&!document.hidden&&scrollY<innerHeight*1.5)raf=requestAnimationFrame(draw)}draw()}
 addEventListener('scroll',()=>{if(homeActive&&!paused&&!reduced.matches&&scrollY<innerHeight*1.5&&!document.hidden){cancelAnimationFrame(raf);initPixels()}},{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else if(homeActive&&!paused)initPixels()});reduced.addEventListener('change',()=>{if(homeActive)initPixels()});
+// Reveal embedded video only after playback begins, never while YouTube shows a black loader.
+addEventListener('message',event=>{if(event.origin!=='https://www.youtube-nocookie.com'&&event.origin!=='https://www.youtube.com')return;const frame=document.getElementById('hero-youtube');if(!frame||event.source!==frame.contentWindow)return;let data;try{data=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}if(data?.event==='onReady')frame.contentWindow?.postMessage(JSON.stringify({event:'command',func:'addEventListener',args:['onStateChange']}),event.origin);if(data?.event==='onStateChange'&&Number(data.info)===1){frame.classList.remove('reel-fading');frame.classList.add('is-ready');document.getElementById('hero-poster')?.classList.add('is-ready');const pixels=document.getElementById('pixels');if(pixels)pixels.hidden=true}});
 function selectReel(i){
  reelIndex=i;clearTimeout(heroReelTimer);clearTimeout(heroSwitchTimer);
  const v=document.getElementById('hero-video'),frame=document.getElementById('hero-youtube'),poster=document.getElementById('hero-poster');
@@ -92,9 +94,9 @@ function selectReel(i){
    poster.src=r.poster||'';poster.hidden=!r.poster;poster.classList.remove('is-ready');
    frame.classList.remove('is-ready');frame.classList.add('reel-fading');
    const start=Math.max(0,Math.floor(r.duration/2)-3),end=Math.min(r.duration,start+7);
-   const url='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(r.youtubeId)+'?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&start='+start+'&end='+end;
+   const url='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(r.youtubeId)+'?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&enablejsapi=1&start='+start+'&end='+end;
    // Assign the URL only when a slot changes. The poster masks the loading period.
-   frame.onload=()=>{if(REELS[reelIndex]!==r)return;frame.classList.remove('reel-fading');frame.classList.add('is-ready');poster.classList.add('is-ready');pixels.hidden=true};
+   frame.onload=()=>{if(REELS[reelIndex]!==r)return;frame.contentWindow?.postMessage(JSON.stringify({event:'listening'}),'https://www.youtube-nocookie.com')};
    frame.src=url;
    if(!paused&&!reduced.matches&&REELS.length>1)heroReelTimer=setTimeout(()=>selectReel((reelIndex+1)%REELS.length),7000);
  }else{

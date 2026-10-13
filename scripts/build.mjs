@@ -16,7 +16,7 @@ function record(r,type,file){
  out.image=text(r,'image');
  if(out.image&&(!/^uploads\/[^\\<>:\x00-\x1f?#%]+\.(png|jpe?g|webp|gif)$/i.test(out.image)||out.image.split('/').some(p=>!p||p==='.'||p==='..')))throw Error(`${file}: 이미지 파일은 uploads/ 아래 PNG JPG WEBP GIF만 가능합니다`);
  if(type==='members'){if(!roles.includes(r.role))throw Error(`${file}: 분야 오류`);out.role=r.role;out.featured_projects=list(r,'featured_projects');}
- if(type==='projects'){if(!groups.includes(r.group))throw Error(`${file}: 카테고리 오류`);out.group=r.group;out.category=text(r,'category')||r.group;out.art=['film','moon','portal'].includes(r.art)?r.art:'film';out.credits=list(r,'credits');out.url=text(r,'url');if(out.url){const u=new URL(out.url);if(u.protocol!=='https:'||u.username||u.password)throw Error(`${file}: 작품 링크는 HTTPS URL이어야 합니다`);}}
+ if(type==='projects'){if(!groups.includes(r.group))throw Error(`${file}: 카테고리 오류`);out.group=r.group;out.category=text(r,'category')||r.group;out.art=['film','moon','portal'].includes(r.art)?r.art:'film';out.credits=list(r,'credits');out.url=text(r,'url');out.youtube_thumbnail=text(r,'youtube_thumbnail');if(out.youtube_thumbnail&&!/^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]+\/(?:maxresdefault|sddefault|hqdefault|mqdefault|default)\.jpg$/.test(out.youtube_thumbnail))throw Error(`${file}: YouTube 썸네일 URL 오류`);if(out.url){const u=new URL(out.url);if(u.protocol!=='https:'||u.username||u.password)throw Error(`${file}: 작품 링크는 HTTPS URL이어야 합니다`);}}
  if(type==='announcements'){out.date=text(r,'date',true);if(!/^\d{4}-\d{2}-\d{2}$/.test(out.date)||new Date(out.date).toISOString().slice(0,10)!==out.date)throw Error(`${file}: 날짜 오류`);}
  return out;
 }

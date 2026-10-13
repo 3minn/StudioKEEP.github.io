@@ -114,7 +114,7 @@ else if(page==='contact'){
  const t=copy.length?copy:['Studio KEEP과 나누고 싶은 이야기가 있나요?','새로운 이야기는<br>작은 인사에서.','협업과 콘텐츠에 관한 문의를 기다립니다.','이름','이메일','VRChat 아이디','문의 내용','문의 보내기','문의 접수를 위해 개인정보 수집·이용에 동의합니다.','문의 접수 시스템이 아직 연결되지 않았습니다.','문의가 접수되었습니다.','전송 중…','전송에 실패했습니다.'];
  main.innerHTML=`<section class="page"><span class="eyebrow">GET IN TOUCH</span><h1 class="page-title">CONTACT</h1><p class="page-intro">${esc(t[0])}</p><div class="contact-box"><div><h2>${t[1]}</h2><p>${esc(t[2])}</p></div><form class="keep-contact-form" id="keep-contact-form"><label>${esc(t[3])}<input name="name" autocomplete="name" maxlength="100" required></label><label>${esc(t[4])}<input name="email" type="email" autocomplete="email" maxlength="254" required></label><label>${esc(t[5])}<input name="vrchat_id" maxlength="100" required></label><label>${esc(t[6])}<textarea name="message" maxlength="5000" required></textarea></label><label class="contact-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><label><input type="checkbox" name="consent" required style="width:auto;margin-right:8px">${esc(t[8])}</label><button type="submit">${esc(t[7])} ↗</button><p class="form-status" id="keep-contact-status" role="status" aria-live="polite"></p></form></div></section>`;
  const form=document.getElementById('keep-contact-form'),status=document.getElementById('keep-contact-status');
- form.addEventListener('submit',async e=>{
+ form.addEventListener?.('submit',async e=>{
    e.preventDefault();
    const endpoint=window.KEEP_INQUIRY_ENDPOINT;
    if(!endpoint){status.textContent=t[9];return}

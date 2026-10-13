@@ -1,12 +1,13 @@
 {
-  "id": "roster-ud788-uc6c0-u5f-u5f",
+  "desc_ja": "課長 · 運営課",
+  "featured_projects": [],
   "name": "히움__",
-  "role": "운영",
-  "desc": "부장 · 운영과",
   "published": true,
   "order": 29,
-  "featured_projects": [],
-  "image": "",
+  "desc": "과장 · 운영과",
+  "role": "운영",
   "desc_en": "Head of Department · Operations",
-  "desc_ja": "部長 · 運営課"
+  "id": "roster-ud788-uc6c0-u5f-u5f",
+  "image": "uploads/hium.png",
+  "name_en": ""
 }

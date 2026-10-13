@@ -49,7 +49,7 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  const memberIDs=new Set(data.members.map(m=>m.id)),projectIDs=new Set(data.projects.map(p=>p.id));
  // Extract named staff only from explicit production-credit fields.
  const creditLine=/^\s*(?:production|producer|edit(?:or|ing)?|art|filming|act(?:or|ing)?|voice|cast|staff|credit(?:s)?|special thanks|제작(?:진)?|크레딧|출연|연출|편집|촬영|기획|감독|성우|디자인|모델링|운영|홍보|出演|制作|編集|撮影|声優)\s*[:：,\[]/i;
- const aliases={'atcat':'at_cat','life4':'life4_','3imnnute':'3minnute'};
+ const aliases={'3imnnute':'3minnute'};
  const normalizedName=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\uFE0E\uFE0F\u200B-\u200D]/g,'').replace(/[^\p{L}\p{N}]/gu,'');
  const nameMap=new Map();
  for(const m of data.members)for(const name of [m.name,m.name_en,m.name_ja])if(name&&normalizedName(name).length>=3)nameMap.set(normalizedName(name),m.id);

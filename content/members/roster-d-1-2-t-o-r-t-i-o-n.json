@@ -1,10 +1,12 @@
 {
-  "id": "roster-d-1-2-t-o-r-t-i-o-n",
+  "featured_projects": [],
   "name": "D12tortion",
-  "role": "연출",
-  "desc": "연출부",
+  "name_ja": "D12tortion",
   "published": true,
   "order": 2,
-  "featured_projects": [],
-  "image": ""
+  "desc": "연출부",
+  "role": "연출",
+  "id": "roster-d-1-2-t-o-r-t-i-o-n",
+  "image": "uploads/d12.png",
+  "name_en": "D12tortion"
 }

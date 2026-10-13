@@ -1,0 +1,35 @@
+{
+  "site_title": "Studio KEEP — 잘 하지 못해도, 할 줄 몰라도 OK",
+  "site_description": "키펠을 중심으로 VRChat에서 영상과 이야기를 만들어가는 비영리 창작 스튜디오 Studio KEEP.",
+  "hero_kicker": "VIRTUAL WORLD / OUR STORIES BEGIN HERE",
+  "hero_title": "Studio KEEP",
+  "hero_caption": "A SMALL WORLD.\nCOUNTLESS STORIES.",
+  "scroll_label": "SCROLL TO REALITY ↓",
+  "reels": [
+    {
+      "label": "FEATURED FILM",
+      "src": "",
+      "poster": ""
+    },
+    {
+      "label": "FEATURED FILM",
+      "src": "",
+      "poster": ""
+    },
+    {
+      "label": "FEATURED FILM",
+      "src": "",
+      "poster": ""
+    },
+    {
+      "label": "FEATURED FILM",
+      "src": "",
+      "poster": ""
+    }
+  ],
+  "contact_url": "",
+  "join_url": "",
+  "footer_note": "Studio KEEP · NONPROFIT CREATIVE STUDIO\n잘 하지 못해도, 할 줄 몰라도 OK",
+  "footer_tagline": "WE KEEP CREATING.",
+  "text_overrides": []
+}

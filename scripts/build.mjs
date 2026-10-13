@@ -47,6 +47,18 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  if(!Array.isArray(rawSettings.recruitment)||rawSettings.recruitment.length>30)throw Error('지원 부서 목록 오류');
  settings.recruitment=rawSettings.recruitment.map((v,i)=>{if(!v||typeof v!=='object')throw Error('지원 부서 오류 '+i);const name=v.name,description=v.description||'',url=v.url||'',open=v.open!==false;if(typeof name!=='string'||!name.trim()||name.length>120||typeof description!=='string'||description.length>3000||typeof url!=='string')throw Error('지원 부서 항목 오류 '+i);if(url){const u=new URL(url);if(u.protocol!=='https:'||u.hostname!=='docs.google.com'||!/^\/forms\/d\/e\/[A-Za-z0-9_-]+\/viewform\/?$/.test(u.pathname))throw Error('Google Forms 주소 오류 '+i);}return {name,description,url,open};});
  const memberIDs=new Set(data.members.map(m=>m.id)),projectIDs=new Set(data.projects.map(p=>p.id));
+ // Resolve explicit member names in production credits to stable member IDs.
+ // Keep CMS-selected IDs and only inspect credit/staff lines, not narrative text.
+ const creditLine=/credit|크레딧|제작진|참여|staff|cast|출연|연출|편집|촬영|3d|기획|감독|음악|제작|director|editor|model|actor|sound|animation|design|운영|홍보|担当|制作|出演/i;
+ const escapedRE=s=>s.replace(/[.*+?^$\{\}()|[\]\\]/g,'\\for(const p of data.projects){for(const id of p.credits)');
+ for(const p of data.projects){
+   const lines=[p.desc,p.desc_en,p.desc_ja].flatMap(v=>(v||'').split(/\r?\n/)).filter(v=>creditLine.test(v));
+   for(const m of data.members){
+     const names=[m.name,m.name_en,m.name_ja].filter(v=>typeof v==='string'&&v.trim().length>=3);
+     if(names.some(name=>lines.some(line=>new RegExp('(^|[^\\p{L}\\p{N}_])'+escapedRE(name)+'(?=$|[^\\p{L}\\p{N}_])','iu').test(line))))p.credits.push(m.id);
+   }
+   p.credits=[...new Set(p.credits)];
+ }
  for(const p of data.projects){for(const id of p.credits)if(!memberIDs.has(id))warnings.push(`${p.id}: 비공개/삭제된 멤버 참조 제외`);p.credits=p.credits.filter(id=>memberIDs.has(id));}
  for(const m of data.members){const participation=data.projects.filter(p=>p.credits.includes(m.id)).map(p=>p.id);m.works=[...new Set([...m.featured_projects.filter(id=>projectIDs.has(id)&&participation.includes(id)),...participation])];delete m.featured_projects;}
  for(const type of Object.keys(data))data[type].sort((a,b)=>type==='announcements'?b.date.localeCompare(a.date)||a.order-b.order||a.id.localeCompare(b.id):a.order-b.order||a.id.localeCompare(b.id));

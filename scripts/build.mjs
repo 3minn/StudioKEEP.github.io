@@ -36,12 +36,12 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
  // Site-wide editorial settings are separate from member/project records.
  const rawSettings=JSON.parse(await readFile(path.join(root,'content','settings','site.json'),'utf8'));
  const settingString=(key,max=1000)=>{const v=rawSettings[key]??'';if(typeof v!=='string'||v.length>max)throw Error('사이트 설정: '+key);return v;};
- const httpsLink=(v,key)=>{if(!v)return '';if(v.startsWith('uploads/'))return v;const u=new URL(v);if(u.protocol!=='https:'||u.username||u.password)throw Error('사이트 설정 URL: '+key);return v;};
+ const httpsLink=(v,key)=>{if(!v)return '';if(v.startsWith('uploads/')){if(!/^uploads\/[a-zA-Z0-9_.-]+\.(png|jpe?g|webp|gif|mp4|webm)$/i.test(v)||v.includes('..'))throw Error('사이트 미디어 경로 오류: '+key);return v;}const u=new URL(v);if(u.protocol!=='https:'||u.username||u.password)throw Error('사이트 설정 URL: '+key);return v;};
  const settings={};
  for(const key of ['site_title','site_description','hero_kicker','hero_title','hero_caption','scroll_label','footer_note','footer_tagline'])settings[key]=settingString(key,3000);
- for(const key of ['contact_url','join_url'])settings[key]=httpsLink(settingString(key),key);
+ for(const key of ['contact_url','join_url']){settings[key]=httpsLink(settingString(key),key);if(settings[key].startsWith('uploads/'))throw Error('버튼 링크는 HTTPS 주소만 허용합니다');}
  if(!Array.isArray(rawSettings.reels)||rawSettings.reels.length<1||rawSettings.reels.length>4)throw Error('영상은 1~4개여야 합니다');
- settings.reels=rawSettings.reels.map((v,i)=>{if(!v||typeof v!=='object'||typeof v.label!=='string'||v.label.length>120||typeof v.src!=='string'||typeof (v.poster??'')!=='string')throw Error('영상 항목 오류 '+i);return {label:v.label,src:httpsLink(v.src,'reel'),poster:httpsLink(v.poster||'','poster')};});
+ settings.reels=rawSettings.reels.map((v,i)=>{if(!v||typeof v!=='object'||typeof v.label!=='string'||v.label.length>120||typeof v.src!=='string'||typeof (v.poster??'')!=='string')throw Error('영상 항목 오류 '+i);const src=httpsLink(v.src,'reel'),poster=httpsLink(v.poster||'','poster');if(src&&!/\.(mp4|webm)(?:[?#].*)?$/i.test(src))throw Error('영상은 MP4/WebM 주소만 허용합니다');if(poster&&!/\.(png|jpe?g|webp|gif)(?:[?#].*)?$/i.test(poster))throw Error('포스터 이미지 형식 오류');return {label:v.label,src,poster};});
  if(!Array.isArray(rawSettings.text_overrides)||rawSettings.text_overrides.length>300)throw Error('문구 변경은 최대 300개입니다');
  settings.text_overrides=rawSettings.text_overrides.map(v=>{if(!v||typeof v.original!=='string'||!v.original.trim()||v.original.length>500)throw Error('원래 문구 오류');const o={original:v.original};for(const k of ['ko','en','ja']){if(typeof (v[k]??'')!=='string'||(v[k]||'').length>3000)throw Error('문구 오류');o[k]=v[k]||'';}return o;});
  const memberIDs=new Set(data.members.map(m=>m.id)),projectIDs=new Set(data.projects.map(p=>p.id));

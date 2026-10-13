@@ -177,7 +177,11 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - {label: "부서 이름", name: name, widget: string}
+              - {label: "부서 이름 (영어)", name: name_en, widget: string, required: false}
+              - {label: "부서 이름 (일본어)", name: name_ja, widget: string, required: false}
               - {label: "부서 소개", name: description, widget: text, required: false}
+              - {label: "부서 소개 (영어)", name: description_en, widget: text, required: false}
+              - {label: "부서 소개 (일본어)", name: description_ja, widget: text, required: false}
               - {label: "Google Forms 지원서 주소", name: url, widget: string, required: false, hint: "docs.google.com/forms/d/e/.../viewform 주소"}
               - {label: "모집 중", name: open, widget: boolean, default: true}
           - {label: "푸터 문구", name: footer_note, widget: text}

@@ -1,0 +1,13 @@
+name = "studio-keep-inquiries"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# Run: npx wrangler d1 create studio-keep-inquiries
+# Replace the database_id below with the ID returned by Cloudflare.
+[[d1_databases]]
+binding = "DB"
+database_name = "studio-keep-inquiries"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[vars]
+ALLOWED_ORIGIN = "https://3minn.github.io"

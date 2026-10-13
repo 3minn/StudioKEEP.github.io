@@ -1,0 +1,15 @@
+{
+  "id": "sample-3d",
+  "name": "멤버 샘플 C",
+  "role": "3D",
+  "desc": "공간과 소품 제작",
+  "published": true,
+  "order": 2,
+  "featured_projects": [
+    "songpyeon"
+  ],
+  "name_en": "Sample member C",
+  "name_ja": "サンプルメンバー C",
+  "desc_en": "Worlds and props",
+  "desc_ja": "空間・小物制作"
+}

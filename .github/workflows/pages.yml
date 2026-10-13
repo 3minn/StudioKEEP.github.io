@@ -1,0 +1,56 @@
+name: Studio KEEP 검증 및 배포
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - name: Pages 설정 읽기
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: 공개 콘텐츠만 빌드
+        run: npm run build
+        env:
+          CMS_AUTH_URL: ${{ vars.CMS_AUTH_URL }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: GitHub Pages 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
+  verify-live:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/configure-pages@v5
+        id: pages
+      - run: npm run verify:live -- "${SITE_URL}/" "$GITHUB_SHA"
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}

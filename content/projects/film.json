@@ -1,0 +1,21 @@
+{
+  "id": "film",
+  "title": "VRChat 영상과 이야기",
+  "category": "FILM / SAMPLE",
+  "status": "작품 등록 예시",
+  "art": "film",
+  "desc": "키펠을 중심으로 VRChat에서 만들어가는 영상과 이야기. 이 카드는 개별 영상의 제목과 대표 화면, 재생 링크가 들어갈 자리입니다.",
+  "credits": [
+    "sample-director",
+    "sample-editor"
+  ],
+  "published": true,
+  "order": 0,
+  "group": "FILM",
+  "title_en": "VRChat films and stories",
+  "title_ja": "VRChatの映像と物語",
+  "desc_en": "Films and stories centered on Kipfel in VRChat. Each entry will contain its title, key image, and viewing link.",
+  "desc_ja": "キプフェルを中心にVRChatでつくる映像と物語。作品名、代表画像、視聴リンクを掲載します。",
+  "status_en": "Sample entry",
+  "status_ja": "登録サンプル"
+}

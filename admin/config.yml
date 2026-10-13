@@ -74,7 +74,7 @@ collections:
     preview_path: '#work/{{id}}'
     editor: {preview: false}
     fields:
-      - {label: "고유 ID (생성 후 변경 금지)", name: id, widget: string, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*|yt-[A-Za-z0-9_-]{11})$', '일반 ID는 소문자·숫자·하이픈, YouTube ID는 yt- 뒤에 영상 ID 11자리를 사용하세요.'], hint: "예: kipfel-mv 또는 yt-Qlgpr67J9ig. 기존 항목의 ID는 바꾸지 마세요."}
+      - {label: "고유 ID (생성 후 변경 금지)", name: id, widget: string, pattern: ['^([a-z0-9]+(-[a-z0-9]+)*|yt-[A-Za-z0-9_-]{11})
       - {label: "사이트에 공개", name: published, widget: boolean, default: false, hint: "끄고 저장하면 다음 배포에서 제외됩니다. 공개 GitHub 저장소의 원본과 이력은 숨겨지지 않습니다."}
       - {label: "표시 순서 (작은 숫자가 먼저)", name: order, widget: number, value_type: int, min: 0, default: 0}
       - {label: "제목 (한국어)", name: title, widget: string, required: true}
@@ -109,7 +109,7 @@ collections:
         multiple: true
         required: false
         hint: "비공개 또는 삭제된 멤버는 사이트 크레딧에서 제외됩니다."
-, '일반 ID는 영문 소문자·숫자·하이픈, YouTube ID는 yt- 뒤에 영상 ID 11자리를 사용하세요.'], hint: "예: kipfel-mv. 기존 항목의 ID는 바꾸지 마세요."}
+, '일반 ID는 소문자·숫자·하이픈, YouTube ID는 yt- 뒤에 영상 ID 11자리를 사용하세요.'], hint: "예: kipfel-mv 또는 yt-Qlgpr67J9ig. 기존 항목의 ID는 바꾸지 마세요."}
       - {label: "사이트에 공개", name: published, widget: boolean, default: false, hint: "끄고 저장하면 다음 배포에서 제외됩니다. 공개 GitHub 저장소의 원본과 이력은 숨겨지지 않습니다."}
       - {label: "표시 순서 (작은 숫자가 먼저)", name: order, widget: number, value_type: int, min: 0, default: 0}
       - {label: "제목 (한국어)", name: title, widget: string, required: true}

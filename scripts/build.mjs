@@ -63,7 +63,13 @@ export async function build({root=process.cwd(),out=path.join(root,'dist'),env=p
    assets.push({src,dest:name});
  }
  await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
- await cp(path.join(root,'site'),out,{recursive:true});await mkdir(path.join(out,'data'),{recursive:true});
+ await cp(path.join(root,'site'),out,{recursive:true});
+ // Each publish receives a new content script URL, preventing stale CMS data in browsers.
+ const htmlPath=path.join(out,'index.html');
+ const htmlSource=await readFile(htmlPath,'utf8');
+ const version=encodeURIComponent(env.GITHUB_SHA||'local');
+ await writeFile(htmlPath,htmlSource.replace('src="data/content.js"',`src="data/content.js?v=${version}"`));
+ await mkdir(path.join(out,'data'),{recursive:true});
  const json=JSON.stringify(data).replaceAll('<','\\u003c').replaceAll('\u2028','\\u2028').replaceAll('\u2029','\\u2029');
  await writeFile(path.join(out,'data','content.js'),'window.KEEP_CONTENT = '+json+';\n');
  await writeFile(path.join(out,'data','content.json'),JSON.stringify(data,null,2)+'\n');

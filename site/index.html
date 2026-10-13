@@ -34,7 +34,7 @@ function applySiteCopy(){
    }
  }
 }
-const roles=['전체','연출','편집','3D','연기','운영','인사','홍보'];
+const roles=['전체','연출','편집','3D','연기','운영','인사'];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function localized(r){const out={...r};for(const key of ['name','title','desc','status','body','category'])out[key]=esc(r[key+'_'+lang]||r[key]||'');return out}
 const members=window.KEEP_CONTENT.members.map(localized);

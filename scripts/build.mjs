@@ -7,7 +7,7 @@ const groups=['FILM','WORLD / GAME','EXPERIENCE','3D / DESIGN'];
 const text=(r,k,required=false)=>{const v=r[k]??'';if(typeof v!=='string'||v.length>50000||(required&&!v.trim()))throw Error(`${r.id}: ${k} 문자열을 확인하세요`);return v;};
 const list=(r,k)=>{const v=r[k]??[];if(!Array.isArray(v)||v.some(x=>typeof x!=='string'||!slug.test(x)))throw Error(`${r.id}: ${k} 참조 ID 오류`);return [...new Set(v)];};
 function record(r,type,file){
- if(!r||typeof r!=='object'||!slug.test(r.id)||file!==r.id+'.json')throw Error(`${file}: ID와 파일 이름이 일치해야 합니다`);
+ if(!r||typeof r!=='object'||!(slug.test(r.id)||(type==='projects'&&/^yt-[A-Za-z0-9_-]{11}$/.test(r.id)))||file!==r.id+'.json')throw Error(`${file}: ID와 파일 이름이 일치해야 합니다`);
  if(typeof r.published!=='boolean')throw Error(`${file}: 공개 여부가 필요합니다`);
  if(r.order!=null&&(!Number.isInteger(r.order)||r.order<0))throw Error(`${file}: 순서는 0 이상의 정수입니다`);
  const out={id:r.id,order:r.order??0};

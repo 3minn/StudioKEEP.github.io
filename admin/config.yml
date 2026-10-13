@@ -170,6 +170,16 @@ collections:
               - {label: "포스터 이미지 (선택)", name: poster, widget: image, required: false}
           - {label: "문의 버튼 링크 (HTTPS)", name: contact_url, widget: string, required: false}
           - {label: "지원 버튼 링크 (HTTPS)", name: join_url, widget: string, required: false}
+          - label: "부서별 지원서 · 모집 관리"
+            name: recruitment
+            widget: list
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "부서 이름", name: name, widget: string}
+              - {label: "부서 소개", name: description, widget: text, required: false}
+              - {label: "Google Forms 지원서 주소", name: url, widget: string, required: false, hint: "docs.google.com/forms/d/e/.../viewform 주소"}
+              - {label: "모집 중", name: open, widget: boolean, default: true}
           - {label: "푸터 문구", name: footer_note, widget: text}
           - {label: "푸터 마지막 문구", name: footer_tagline, widget: string}
           - label: "화면 문구 자유 변경"

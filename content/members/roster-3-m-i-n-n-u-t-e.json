@@ -1,12 +1,10 @@
 {
   "id": "roster-3-m-i-n-n-u-t-e",
   "name": "3minnute",
-  "role": "본부장",
+  "role": "운영",
   "desc": "크리에이션 본부장",
   "published": true,
   "order": 1,
   "featured_projects": [],
-  "image": "",
-  "desc_en": "Head of Creation Division",
-  "desc_ja": "クリエーション本部長"
+  "image": "uploads/vrchat_2026-04-01_00-50-31.656_1920x1080.png"
 }

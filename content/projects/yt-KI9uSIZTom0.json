@@ -6,7 +6,10 @@
   "art": "film",
   "category": "YOUTUBE / SHORTS",
   "status": "YouTube 공개 영상",
-  "credits": [],
+  "credits": [
+    "roster-u3b5-ub2e4-uc694-u437",
+    "roster-uc789-uc5b4-uc5d0-uc694"
+  ],
   "youtube_id": "KI9uSIZTom0",
   "youtube_synced": true,
   "youtube_thumbnail": "https://i.ytimg.com/vi/KI9uSIZTom0/maxresdefault.jpg",

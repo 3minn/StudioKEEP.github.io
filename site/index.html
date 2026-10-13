@@ -137,7 +137,7 @@ else if(page==='contact'){
 else{location.hash='home';return}bind();applyLanguage();applySiteCopy();setupReveal();}
 function workFilters(){return `<div class="work-filters"><span>CATEGORY</span><div>${['ALL','FILM','WORLD / GAME','EXPERIENCE','3D / DESIGN'].map(c=>`<button data-category="${c}" aria-pressed="${workFilter===c}">${c}<sup>${c==='ALL'?works.length:works.filter(w=>w.group===c).length}</sup></button>`).join('')}</div></div>`}
 function bind(){main.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>{workFilter=b.dataset.category;main.querySelectorAll('[data-category]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.getElementById('filtered-works').innerHTML=cards()+(!works.some(w=>workFilter==='ALL'||w.group===workFilter)?'<p class="note">'+({ko:'등록된 작품이 없습니다.',en:'No projects listed yet.',ja:'掲載作品はまだありません。'}[lang])+'</p>':'');bind();setupReveal();applyLanguage()});main.querySelectorAll('[data-reel]').forEach(b=>b.onclick=()=>selectReel(Number(b.dataset.reel)));main.querySelectorAll('[data-work]').forEach(b=>b.onclick=()=>location.hash='work/'+b.dataset.work);main.querySelectorAll('[data-member]').forEach(b=>b.onclick=()=>location.hash='member/'+b.dataset.member);main.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{roleFilter=b.dataset.role;main.querySelectorAll('[data-role]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b))});document.getElementById('member-list').innerHTML=memberCards(roleFilter);bind();applyLanguage()})}
-let transitionTimer,inkFinishTimer;
+let transitionTimer;let inkFinishTimer;
 addEventListener('hashchange',()=>{
  clearTimeout(transitionTimer);clearTimeout(inkFinishTimer);
  main.classList.remove('ink-in','ink-out');

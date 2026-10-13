@@ -28,9 +28,9 @@ header nav a[aria-current="page"]:hover::after,header nav a[aria-current="page"]
 @media(prefers-reduced-motion:reduce){.sweep.run{animation:none}}
 /* Staggered letter-by-letter hero typography, with deterministic varied entrances. */
 .hero-type h1{display:flex;justify-content:center;align-items:baseline;white-space:nowrap;overflow:visible}
-.hero-type .hero-letter{display:inline-block;opacity:0;transform:translate3d(var(--letter-x,0px),var(--letter-y,0px),0) rotate(var(--letter-r,0deg)) scale(.86);filter:blur(9px);animation:hero-letter-in var(--letter-duration,.9s) cubic-bezier(.2,.75,.2,1) var(--letter-delay,0s) both;will-change:transform,opacity,filter}
+.hero-type .hero-letter{display:inline-block;opacity:0;transform:translate3d(var(--letter-x,0px),var(--letter-y,0px),0) rotate(var(--letter-r,0deg)) scale(0);filter:blur(9px);animation:hero-letter-in var(--letter-duration,.9s) cubic-bezier(.2,.75,.2,1) var(--letter-delay,0s) both;will-change:transform,opacity,filter}
 .hero-type .hero-letter-space{width:.27em;flex-shrink:0}
-@keyframes hero-letter-in{0%{opacity:0;transform:translate3d(var(--letter-x,0px),var(--letter-y,0px),0) rotate(var(--letter-r,0deg)) scale(.86);filter:blur(9px)}72%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1);filter:blur(0)}}
+@keyframes hero-letter-in{0%{opacity:0;transform:translate3d(var(--letter-x,0px),var(--letter-y,0px),0) rotate(var(--letter-r,0deg)) scale(0);filter:blur(9px)}72%{opacity:1;filter:blur(0)}100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1);filter:blur(0)}}
 @media(prefers-reduced-motion:reduce){.hero-type .hero-letter{animation:none;opacity:1;transform:none;filter:none}}
 /* Keep a thumbnail visible until the corresponding player has finished loading. */
 .hero-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.55);pointer-events:none;transition:opacity .45s ease}

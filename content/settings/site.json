@@ -34,34 +34,46 @@
   "text_overrides": [],
   "recruitment": [
     {
-      "name": "3D부",
-      "description": "3D 모델링과 가상 공간, 소품 제작에 관심 있는 분들을 기다립니다.",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLSci4OXyz3J9vhCIFy-ZYU0z4rmAeshhzxVi2UdXrx3VgbYbQA/viewform",
-      "open": true
-    },
-    {
-      "name": "매니지먼트 본부 (인사·운영)",
-      "description": "멤버 간 소통과 스튜디오 운영을 함께 이끌어갈 분들을 기다립니다.",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
-      "open": true
-    },
-    {
-      "name": "연기부",
-      "description": "캐릭터와 이야기를 연기로 표현하는 활동에 관심 있는 분들을 기다립니다.",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLSe28z1JzHm3uFDITheWXTSRJdk3Kso9BI8MfgjN76WkHYZmtA/viewform",
-      "open": true
-    },
-    {
       "name": "연출부",
-      "description": "영상과 프로젝트의 기획, 스토리 구성 및 연출에 관심 있는 분들을 기다립니다.",
+      "description": "영상의 전체 그림을 그리고 영상을 촬영하는 부서입니다.\n기획부터 촬영까지! 감정선, 인물 동선(블로킹)을 설계하고 촬영을 통해 현장의 모든 요소를 조율해 하나의 작품으로 완성합니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSc6axoKxfjUrF-UofWfdyicqzJJdW0-40pyE6FDnAA-Icz_-A/viewform",
       "open": true
     },
     {
       "name": "편집부",
-      "description": "영상 편집과 후반 제작을 함께할 분들을 기다립니다.",
+      "description": "촬영된 영상을 편집 프로그램을 통해 하나의 결과물로 완성하는 부서입니다.\n영상 제작의 마무리를 담당하며 모든 팀의 작업을 조화롭게 엮어 작품을 더 풍요롭게 만듭니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSfyCNbyuw_j25hmarfbHwlEgT2z8ZE0hDGJFPdiVcktAGkKlw/viewform",
       "open": true
+    },
+    {
+      "name": "3D부",
+      "description": "영상 속 배경(월드)과 에셋을 구축하며 섭외하는 부서입니다.\n컨셉에 맞는 공간을 제작하거나 소싱하며 월드 크리에이터와의 협업 및 라이선스 관리도 담당합니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSci4OXyz3J9vhCIFy-ZYU0z4rmAeshhzxVi2UdXrx3VgbYbQA/viewform",
+      "open": true
+    },
+    {
+      "name": "연기부",
+      "description": "캐릭터가 되어 대사, 표정, 행동으로 메시지를 전달하는 부서입니다.\n극의 몰입도를 높이고 시청자가 작품에 공감할 수 있도록 만드는 핵심 역할입니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSe28z1JzHm3uFDITheWXTSRJdk3Kso9BI8MfgjN76WkHYZmtA/viewform",
+      "open": true
+    },
+    {
+      "name": "운영부",
+      "description": "동아리의 지속 가능한 환경을 조성하고 크리에이션 본부를 지원하는 부서입니다.\n내부 규칙 수립, 워크숍 및 주요 행사 기획을 담당하며 각 본부 간의 원활한 협업이 이루어질 수 있도록 가이드라인을 제시하는 컨트롤 타워 역할을 수행합니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
+      "open": true
+    },
+    {
+      "name": "인사부",
+      "description": "동아리원의 성장과 화합을 도모하며 최적의 인적 자원을 배치하는 부서입니다.\n신규 멤버 리크루팅, 부서 배치, 멤버 간의 소통 케어 등을 하며 Studio KEEP만의 건강한 조직 문화를 구축하는 데 주력합니다.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
+      "open": true
+    },
+    {
+      "name": "회계부",
+      "description": "동아리의 유무형 자산을 투명하게 관리하고 운영 효율을 극대화하는 부서입니다.\n예산 편성 및 집행 내역 기록, 상금이나 리워드 관리, 라이선스 비용 검토를 통해 창작 활동이 안정적으로 지속될 수 있도록 재정적 기반을 뒷받침합니다.",
+      "url": "",
+      "open": false
     }
   ]
 }

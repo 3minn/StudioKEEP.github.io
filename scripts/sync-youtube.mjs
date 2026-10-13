@@ -21,6 +21,7 @@ if(creditLines.length&&!credits.length)unmatched.add(video.id);
 const row=existing?{...existing}:{id,published:true,order:10000,group:'FILM',art:'film',category:'YOUTUBE',status:'YouTube 공개 영상',credits:[]};
 row.youtube_id=video.id;row.youtube_synced=true;row.youtube_thumbnail=snippet.thumbnails?.maxres?.url||snippet.thumbnails?.standard?.url||snippet.thumbnails?.high?.url||snippet.thumbnails?.medium?.url||'';
 row.youtube_published_at=snippet.publishedAt||'';
+const duration=video.contentDetails?.duration||'';const dm=duration.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);row.youtube_duration_seconds=dm?(Number(dm[1]||0)*3600+Number(dm[2]||0)*60+Number(dm[3]||0)):0;
 row.title=snippet.title;row.desc=description.slice(0,50000);row.url='https://www.youtube.com/watch?v='+video.id;
 row.category=video.contentDetails?.duration&&/^PT(?:[0-5]?\dS|1M(?:[0-9]S)?)$/.test(video.contentDetails.duration)?'YOUTUBE / SHORTS':'YOUTUBE / VIDEO';
 row.credits=[...new Set([...(existing?.credits||[]),...credits])];

@@ -1,0 +1,15 @@
+{
+  "id": "sample-director",
+  "name": "멤버 샘플 A",
+  "role": "연출",
+  "desc": "기획과 장면 연출",
+  "published": true,
+  "order": 0,
+  "featured_projects": [
+    "film"
+  ],
+  "name_en": "Sample member A",
+  "name_ja": "サンプルメンバー A",
+  "desc_en": "Planning and scene direction",
+  "desc_ja": "企画・シーン演出"
+}

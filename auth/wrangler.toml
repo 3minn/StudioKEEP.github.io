@@ -1,0 +1,12 @@
+name = "studio-keep-oauth"
+main = "worker.mjs"
+compatibility_date = "2026-10-01"
+workers_dev = true
+# OAuth 응답/토큰은 로그에 남기지 않습니다.
+[observability]
+enabled = false
+[vars]
+SITE_ORIGIN = "https://3minn.github.io"
+GITHUB_REPOSITORY = "3minn/StudioKEEP.github.io"
+ADMIN_LOGINS = "3minn"
+# OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, STATE_SECRET은 wrangler secret put으로 저장.

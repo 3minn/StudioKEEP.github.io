@@ -1,0 +1,16 @@
+{
+  "id": "vket",
+  "title": "Vket Real 2026 Winter",
+  "category": "EXPERIENCE",
+  "status": "출전 준비 중",
+  "art": "portal",
+  "desc": "2026년 12월 19–20일, 도쿄 신주쿠에서 선보일 체험형 테크부스. 가상세계와 현실을 연결하는 고양이 카페를 준비하고 있습니다.",
+  "credits": [],
+  "published": true,
+  "order": 2,
+  "group": "EXPERIENCE",
+  "desc_en": "An interactive tech booth planned for December 19–20, 2026 in Shinjuku, Tokyo. We are preparing a cat café connecting virtual and physical worlds.",
+  "desc_ja": "2026年12月19–20日、東京・新宿で出展予定の体験型テックブース。仮想世界と現実をつなぐ猫カフェを準備しています。",
+  "status_en": "Exhibition in preparation",
+  "status_ja": "出展準備中"
+}

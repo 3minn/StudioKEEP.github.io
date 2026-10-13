@@ -5,7 +5,7 @@ const slug=/^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const roles=['연출','편집','3D','연기','운영','인사','회계','홍보'];
 const groups=['FILM','WORLD / GAME','EXPERIENCE','3D / DESIGN'];
 const text=(r,k,required=false)=>{const v=r[k]??'';if(typeof v!=='string'||v.length>50000||(required&&!v.trim()))throw Error(`${r.id}: ${k} 문자열을 확인하세요`);return v;};
-const list=(r,k)=>{const v=r[k]??[];if(!Array.isArray(v)||v.some(x=>typeof x!=='string'||!slug.test(x)))throw Error(`${r.id}: ${k} 참조 ID 오류`);return [...new Set(v)];};
+const list=(r,k)=>{const v=r[k]??[];if(!Array.isArray(v)||v.some(x=>typeof x!=='string'||!(slug.test(x)||/^yt-[A-Za-z0-9_-]{11}$/.test(x))))throw Error(`${r.id}: ${k} 참조 ID 오류`);return [...new Set(v)];};
 function record(r,type,file){
  if(!r||typeof r!=='object'||!(slug.test(r.id)||(type==='projects'&&/^yt-[A-Za-z0-9_-]{11}$/.test(r.id)))||file!==r.id+'.json')throw Error(`${file}: ID와 파일 이름이 일치해야 합니다`);
  if(typeof r.published!=='boolean')throw Error(`${file}: 공개 여부가 필요합니다`);

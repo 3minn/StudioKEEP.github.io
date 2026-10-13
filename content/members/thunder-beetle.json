@@ -1,0 +1,16 @@
+{
+  "desc_ja": "3D部 部長 — 空間・小道具のデザイン・制作",
+  "featured_projects": [
+    "film"
+  ],
+  "name": "thunder beetle",
+  "name_ja": "thunder beetle",
+  "published": true,
+  "order": 1,
+  "desc": "공간과 소품 제작, 3D부의 부장.",
+  "role": "3D",
+  "desc_en": "Head of the 3D Department — Spatial & Prop Design and Production",
+  "id": "thunder-beetle",
+  "image": "uploads/thunderbeetle.png",
+  "name_en": "thunder beetle"
+}

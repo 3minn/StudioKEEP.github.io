@@ -37,43 +37,71 @@
       "name": "연출부",
       "description": "영상의 전체 그림을 그리고 영상을 촬영하는 부서입니다.\n기획부터 촬영까지! 감정선, 인물 동선(블로킹)을 설계하고 촬영을 통해 현장의 모든 요소를 조율해 하나의 작품으로 완성합니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSc6axoKxfjUrF-UofWfdyicqzJJdW0-40pyE6FDnAA-Icz_-A/viewform",
-      "open": true
+      "open": true,
+      "name_en": "Direction Department",
+      "name_ja": "映像演出部",
+      "description_en": "The team that plans and shoots our videos.\nFrom concept development to filming, the team designs the emotional flow and actors' movements (blocking), coordinates every element on set, and brings each production together.",
+      "description_ja": "映像の企画・演出・撮影を担う部門です。\n企画から撮影まで、感情の流れや出演者の動線（ブロッキング）を設計し、現場のさまざまな要素を調整して一つの作品に仕上げます。"
     },
     {
       "name": "편집부",
       "description": "촬영된 영상을 편집 프로그램을 통해 하나의 결과물로 완성하는 부서입니다.\n영상 제작의 마무리를 담당하며 모든 팀의 작업을 조화롭게 엮어 작품을 더 풍요롭게 만듭니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSfyCNbyuw_j25hmarfbHwlEgT2z8ZE0hDGJFPdiVcktAGkKlw/viewform",
-      "open": true
+      "open": true,
+      "name_en": "Editing Department",
+      "name_ja": "編集部",
+      "description_en": "The team that turns recorded footage into finished videos.\nEditors bring together the work of every team, shaping the final piece into a cohesive and engaging production.",
+      "description_ja": "撮影した映像を編集し、一つの完成作品へと仕上げる部門です。\n各チームの成果を調和させ、作品の魅力をより豊かに引き出します。"
     },
     {
       "name": "3D부",
       "description": "영상 속 배경(월드)과 에셋을 구축하며 섭외하는 부서입니다.\n컨셉에 맞는 공간을 제작하거나 소싱하며 월드 크리에이터와의 협업 및 라이선스 관리도 담당합니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSci4OXyz3J9vhCIFy-ZYU0z4rmAeshhzxVi2UdXrx3VgbYbQA/viewform",
-      "open": true
+      "open": true,
+      "name_en": "3D Department",
+      "name_ja": "3D部",
+      "description_en": "The team that builds and sources virtual worlds, backgrounds, and assets for our productions.\nWe create or source spaces that fit each concept and coordinate with world creators, including licensing and permissions.",
+      "description_ja": "作品に登場するワールドや背景、3Dアセットの制作・調達を担う部門です。\nコンセプトに合った空間の制作・選定に加え、ワールド制作者との連携やライセンス管理も行います。"
     },
     {
       "name": "연기부",
       "description": "캐릭터가 되어 대사, 표정, 행동으로 메시지를 전달하는 부서입니다.\n극의 몰입도를 높이고 시청자가 작품에 공감할 수 있도록 만드는 핵심 역할입니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSe28z1JzHm3uFDITheWXTSRJdk3Kso9BI8MfgjN76WkHYZmtA/viewform",
-      "open": true
+      "open": true,
+      "name_en": "Performance Department",
+      "name_ja": "演技部",
+      "description_en": "The team that brings characters and stories to life through dialogue, expressions, and movement.\nPerformers help audiences connect with the story and make each scene more immersive.",
+      "description_ja": "セリフ・表情・動きでキャラクターを演じ、物語を伝える部門です。\n作品への没入感を高め、視聴者が登場人物に共感できる表現を担います。"
     },
     {
       "name": "운영과",
       "description": "동아리의 지속 가능한 환경을 조성하고 크리에이션 본부를 지원하는 부서입니다.\n내부 규칙 수립, 워크숍 및 주요 행사 기획을 담당하며 각 본부 간의 원활한 협업이 이루어질 수 있도록 가이드라인을 제시하는 컨트롤 타워 역할을 수행합니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
-      "open": true
+      "open": true,
+      "name_en": "Operations Team",
+      "name_ja": "運営課",
+      "description_en": "The team that supports the Creation Division and builds a sustainable environment for Studio KEEP.\nWe develop internal guidelines, organize workshops and major events, and help departments collaborate smoothly.",
+      "description_ja": "Studio KEEPの継続的な活動を支え、クリエーション本部をサポートする部門です。\n内部ルールの整備、ワークショップや主要イベントの企画、各本部間の連携を円滑にするためのガイドライン策定を行います。"
     },
     {
       "name": "인사과",
       "description": "동아리원의 성장과 화합을 도모하며 최적의 인적 자원을 배치하는 부서입니다.\n신규 멤버 리크루팅, 부서 배치, 멤버 간의 소통 케어 등을 하며 Studio KEEP만의 건강한 조직 문화를 구축하는 데 주력합니다.",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLScaVz51t8aYsnxo_qVMkW6xliIZ3iUPBzaAJvVzdLpnGUrLow/viewform",
-      "open": true
+      "open": true,
+      "name_en": "Human Resources Team",
+      "name_ja": "人事課",
+      "description_en": "The team that supports members' growth and collaboration and helps everyone find the right role.\nWe handle recruitment, department assignments, and communication support to foster a healthy studio culture.",
+      "description_ja": "メンバーの成長と交流を支え、適切な人員配置を行う部門です。\n新規メンバーの募集、部署への配属、メンバー間のコミュニケーション支援を通じて、健全な組織文化を育みます。"
     },
     {
       "name": "회계과",
       "description": "동아리의 유무형 자산을 투명하게 관리하고 운영 효율을 극대화하는 부서입니다.\n예산 편성 및 집행 내역 기록, 상금이나 리워드 관리, 라이선스 비용 검토를 통해 창작 활동이 안정적으로 지속될 수 있도록 재정적 기반을 뒷받침합니다.",
       "url": "",
-      "open": false
+      "open": false,
+      "name_en": "Accounting Team",
+      "name_ja": "会計課",
+      "description_en": "The team that manages the studio's financial and other assets transparently.\nWe oversee budgets and expenses, rewards and prizes, and licensing costs to support sustainable creative work.",
+      "description_ja": "スタジオの有形・無形資産を透明性をもって管理する部門です。\n予算・支出の記録、賞金や報酬の管理、ライセンス費用の確認を通じて、安定した創作活動を支えます。"
     }
   ]
 }

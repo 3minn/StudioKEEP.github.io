@@ -37,7 +37,8 @@ function applySiteCopy(){
 const roles=['전체','연출','편집','3D','연기','운영','인사','회계','홍보'];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function localized(r){const out={...r};for(const key of ['name','title','desc','status','body','category'])out[key]=esc(r[key+'_'+lang]||r[key]||'');return out}
-const members=window.KEEP_CONTENT.members.map(localized);
+const memberRank=m=>{const n=String(m.name||'').toLowerCase(),d=String(m.desc||'');if(n==='gαrdeɴ')return 0;if(n==='3minnute')return 1;if(n==='anyujin_0603')return 2;if(/대표/.test(d)&&!/부대표/.test(d))return 0;if(/본부장/.test(d))return 2;if(/부장|과장|부서장|실장/.test(d))return 3;return 4};
+const members=window.KEEP_CONTENT.members.map(localized).sort((a,b)=>memberRank(a)-memberRank(b)||(Number(a.order)||0)-(Number(b.order)||0)||String(a.name).localeCompare(String(b.name),'ko'));
 const works=window.KEEP_CONTENT.projects.map(localized);
 const announcements=window.KEEP_CONTENT.announcements.map(localized);
 const main=document.getElementById('main');let raf=0,paused=false,homeActive=false,roleFilter='전체';const reduced=matchMedia('(prefers-reduced-motion: reduce)');

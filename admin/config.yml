@@ -142,3 +142,44 @@ collections:
       - {label: "내용 (줄바꿈 지원 · HTML 불가) (한국어)", name: body, widget: text, required: true}
       - {label: "내용 (줄바꿈 지원 · HTML 불가) (영어 · 선택)", name: body_en, widget: text, required: false}
       - {label: "내용 (줄바꿈 지원 · HTML 불가) (일본어 · 선택)", name: body_ja, widget: text, required: false}
+
+  - name: site_settings
+    label: 홈페이지 전체 설정
+    editor: {preview: false}
+    files:
+      - name: homepage
+        label: 영상 · 문구 · 버튼 · 링크
+        file: content/settings/site.json
+        format: json
+        fields:
+          - {label: "사이트 제목", name: site_title, widget: string}
+          - {label: "검색 결과 설명", name: site_description, widget: text}
+          - {label: "입장 화면 작은 제목", name: hero_kicker, widget: string}
+          - {label: "입장 화면 큰 제목", name: hero_title, widget: string}
+          - {label: "입장 화면 하단 문구", name: hero_caption, widget: text}
+          - {label: "스크롤 버튼 문구", name: scroll_label, widget: string}
+          - label: "인트로 영상 (최대 4개)"
+            name: reels
+            widget: list
+            min: 1
+            max: 4
+            summary: "{{fields.label}}"
+            fields:
+              - {label: "영상 선택 버튼 이름", name: label, widget: string}
+              - {label: "영상 파일 업로드 (MP4/WebM)", name: src, widget: file, required: false, hint: "25MB 이하의 짧은 영상만 권장. 외부 영상 URL은 저장된 JSON에서 직접 입력할 수 있습니다."}
+              - {label: "포스터 이미지 (선택)", name: poster, widget: image, required: false}
+          - {label: "문의 버튼 링크 (HTTPS)", name: contact_url, widget: string, required: false}
+          - {label: "지원 버튼 링크 (HTTPS)", name: join_url, widget: string, required: false}
+          - {label: "푸터 문구", name: footer_note, widget: text}
+          - {label: "푸터 마지막 문구", name: footer_tagline, widget: string}
+          - label: "화면 문구 자유 변경"
+            name: text_overrides
+            widget: list
+            required: false
+            summary: "{{fields.original}}"
+            hint: "기존 홈페이지에서 보이는 문구를 '원래 문구'에 정확히 입력하면 교체합니다. 언어별 값을 따로 지정할 수 있습니다."
+            fields:
+              - {label: "원래 문구 (홈페이지에 보이는 글자 그대로)", name: original, widget: string}
+              - {label: "변경할 한국어", name: ko, widget: text}
+              - {label: "변경할 영어 (선택)", name: en, widget: text, required: false}
+              - {label: "변경할 일본어 (선택)", name: ja, widget: text, required: false}

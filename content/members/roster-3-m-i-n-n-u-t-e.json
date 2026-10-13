@@ -1,10 +1,12 @@
 {
   "id": "roster-3-m-i-n-n-u-t-e",
   "name": "3minnute",
-  "role": "운영",
+  "role": "본부장",
   "desc": "크리에이션 본부장",
   "published": true,
   "order": 1,
   "featured_projects": [],
-  "image": ""
+  "image": "",
+  "desc_en": "Head of Creation Division",
+  "desc_ja": "クリエーション本部長"
 }

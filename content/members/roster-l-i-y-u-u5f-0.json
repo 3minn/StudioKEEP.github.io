@@ -2,11 +2,13 @@
   "id": "roster-l-i-y-u-u5f-0",
   "name": "Liyu_0",
   "role": "연기",
-  "desc": "연기부",
+  "desc": "안녕하세요! Studio KEEP 연기부의 리유(Liyu_0)입니다! 영상 촬영을 좋아하고, Studio KEEP에서 다양한 경험을 쌓으며 열심히 활동하고 있어요!",
   "published": true,
   "order": 9,
   "featured_projects": [
     "yt-38kQRxAB080"
   ],
-  "image": "uploads/liyu2.png"
+  "image": "uploads/liyu2.png",
+  "desc_ja": "こんにちは！Studio KEEPの演技部に所属しているリユ（Liyu_0）です！動画を撮ることが好きで、Studio KEEPでさまざまな経験を積みながら、楽しく一生懸命活動しています！",
+  "desc_en": "Hi! I'm Liyu (Liyu_0), a member of Studio KEEP's acting team! I love shooting videos, and I'm enthusiastically learning and gaining new experiences through my activities at Studio KEEP!"
 }

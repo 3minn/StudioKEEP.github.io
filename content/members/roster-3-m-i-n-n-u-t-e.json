@@ -1,12 +1,12 @@
 {
-  "desc_ja": "クリエーション本部長",
+  "desc_ja": "韓国生まれ。日本留学中にイラストレーションとメディアアートを学ぶ。現在は2D、3DCG、テクノロジーを軸に、さまざまな技法を取り入れたインタラクティブ作品を制作している。繊細で鋭い感性を生かし、日常の見慣れたものがもたらす心地よさや空気感を大切にした作品づくりに取り組む。",
   "featured_projects": [],
   "name": "3minnute",
   "published": true,
   "order": 1,
-  "desc": "크리에이션 본부장",
+  "desc": "한국 출생. 일본 유학 시절 일러스트와 미디어아트를 공부했으며, 현재는 2D, 3DCG와 기술을 중심으로 다양한 기법을 인터랙티브 작품에 녹여낸다. 섬세하고 예리한 감각을 바탕으로 일상의 익숙한 것들이 주는 편안함과 공기감을 담은 인터랙티브 작품을 제작한다.",
   "role": "본부장",
-  "desc_en": "Head of Creation Division",
+  "desc_en": "Born in South Korea, 3minnute studied illustration and media art while studying in Japan. Now working primarily with 2D, 3D CG, and technology, they bring a range of techniques together in interactive works. Drawing on a keen sensitivity to subtle details, they create interactive experiences inspired by the comfort and atmosphere of familiar everyday moments.",
   "id": "roster-3-m-i-n-n-u-t-e",
   "image": "uploads/3min.png"
 }

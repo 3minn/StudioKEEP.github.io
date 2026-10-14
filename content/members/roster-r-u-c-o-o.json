@@ -2,9 +2,11 @@
   "id": "roster-r-u-c-o-o",
   "name": "RUCOO",
   "role": "연출",
-  "desc": "연출부",
+  "desc": "경험과 협력의 가치를 믿고 함께 전진하는 연출부원 RUCOO(루코)입니다!",
   "published": true,
   "order": 5,
   "featured_projects": [],
-  "image": "uploads/ruuco.png"
+  "image": "uploads/ruuco.png",
+  "desc_en": "I'm RUCOO (Ruko), a member of the directing team who believes in the value of experience and collaboration, and in moving forward together!",
+  "desc_ja": "経験と協力の価値を信じ、仲間とともに前へ進む演出部メンバー、RUCOO（ルコ）です！"
 }
